@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+
+     postgraphile:
+        image: graphile/postgraphile        
+        env_file: ./docker/postgres.env
+        entrypoint: "/bin/sh -c '/postgraphile/cli.js --connection postgres://$${POSTGRES_USER}:$${POSTGRES_PASSWORD}@$${POSTGRES_HOST}:5432/$${POSTGRES_DATABASE} --schema $${POSTGRES_SCHEMA} --watch'"
+        ports:
+          - "5000:5000"

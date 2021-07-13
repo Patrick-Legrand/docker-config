@@ -3,7 +3,6 @@ version: '3'
 services:
        
     php55:
-
         build:
             context: ./
             dockerfile: Dockerfile
@@ -12,3 +11,12 @@ services:
           - "82:80"
         volumes:
             - D:\0.01 - PROJETS:/var/www/PROJETS
+        links:
+            - "mailhog"
+        restart: always
+
+    mailhog:
+        image: mailhog/mailhog:latest
+        ports:
+            - "8025:8025"
+            - "1025:1025"
